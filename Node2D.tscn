@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sphere.gd" type="Script" id=1]
+[ext_resource path="res://Sprere.png" type="Texture" id=2]
+[ext_resource path="res://stabilization.gd" type="Script" id=3]
+[ext_resource path="res://line.tscn" type="PackedScene" id=4]
+[ext_resource path="res://move_or_fixed.gd" type="Script" id=5]
+[ext_resource path="res://output.gd" type="Script" id=6]
+
+[node name="Node2D" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="output" type="RichTextLabel" parent="."]
+margin_left = 114.0
+margin_top = 76.0
+margin_right = 371.0
+margin_bottom = 151.0
+script = ExtResource( 6 )
+
+[node name="stabilization" type="RichTextLabel" parent="."]
+margin_left = 537.0
+margin_top = 68.0
+margin_right = 788.0
+margin_bottom = 108.0
+script = ExtResource( 3 )
+
+[node name="Slider_inclane" type="HSlider" parent="."]
+anchor_left = 0.243
+anchor_right = 0.243
+margin_left = 113.0
+margin_top = 29.0
+margin_right = 371.0
+margin_bottom = 72.0
+min_value = -30.0
+max_value = 60.0
+step = 0.1
+
+[node name="Slider_fixed" type="HSlider" parent="."]
+margin_left = 534.0
+margin_top = 42.0
+margin_right = 791.0
+margin_bottom = 58.0
+min_value = -80.0
+max_value = 195.0
+step = 0.1
+
+[node name="move_or_fixed" type="CheckButton" parent="."]
+margin_left = 418.0
+margin_top = 32.0
+margin_right = 494.0
+margin_bottom = 72.0
+script = ExtResource( 5 )
+
+[node name="line" parent="." instance=ExtResource( 4 )]
+position = Vector2( 396.897, 258.451 )
+scale = Vector2( 2.22989, 2.05634 )
+
+[node name="sphere" type="Sprite" parent="line"]
+position = Vector2( -80.1702, 26 )
+scale = Vector2( 0.871739, 0.84375 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[connection signal="value_changed" from="Slider_inclane" to="line" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="Slider_fixed" to="line" method="_on_Slider_fixed_value_changed"]
+[connection signal="pressed" from="move_or_fixed" to="line" method="_on_move_or_fixed_pressed"]

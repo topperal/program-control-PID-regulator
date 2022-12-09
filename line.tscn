@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://line.gd" type="Script" id=1]
+
+[node name="line" type="Line2D"]
+position = Vector2( -72.3966, 0 )
+scale = Vector2( 1.27011, 1 )
+points = PoolVector2Array( -107, 2, -107, 53, 220.765, 53, 221, 4 )
+script = ExtResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
